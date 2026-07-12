@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aqib Yousuf — User Researcher for Product Teams</title>
+<meta name="description" content="User researcher and data generalist working across product analytics, user research, and growth experimentation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  /* ===========================================================
+     DESIGN TOKENS — edit colors/fonts here and they apply everywhere
+     =========================================================== */
+  :root {
+    --paper: #FAFAF8;
+    --paper-raised: #F3F2ED;
+    --ink: #16181D;
+    --slate: #5B6472;
+    --accent: #2F5D62;
+    --accent-tint: #E8EFEE;
+    --line: #DEDDD6;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+    --max-width: 800px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration-color: var(--line); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ===========================================================
+     EYEBROW / LABEL — small tracked mono labels used throughout
+     =========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+
+  /* ===========================================================
+     NAV
+     =========================================================== */
+  nav.top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(250, 250, 248, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+  }
+  nav.top .name {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  nav.top ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav.top a.navlink {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--slate);
+    text-decoration: none;
+  }
+  nav.top a.navlink:hover { color: var(--accent); }
+
+  /* ===========================================================
+     HERO
+     =========================================================== */
+  header.hero {
+    padding: 88px 0 64px;
+  }
+  header.hero h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+    max-width: 13ch;
+  }
+  header.hero .role {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    margin: 0 0 28px;
+  }
+  header.hero p.bio {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink);
+    max-width: 58ch;
+    margin: 0 0 28px;
+  }
+  header.hero p.bio .muted { color: var(--slate); }
+
+  .hero-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+
+  /* ===========================================================
+     SECTION SCAFFOLDING
+     =========================================================== */
+  section {
+    padding: 64px 0;
+    border-top: 1px solid var(--line);
+  }
+  section > .wrap > h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 28px;
+    margin: 0 0 6px;
+  }
+  section > .wrap > p.lede {
+    color: var(--slate);
+    max-width: 56ch;
+    margin: 0 0 40px;
+  }
+
+  /* ===========================================================
+     CASE STUDIES
+     =========================================================== */
+  .case {
+    padding: 40px 0;
+  }
+  .case:not(:last-child) {
+    border-bottom: 1px solid var(--line);
+  }
+  .case-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .case-head h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 23px;
+    margin: 0;
+    max-width: 34ch;
+  }
+  .case-org {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--slate);
+    white-space: nowrap;
+  }
+
+  .case-block { margin: 18px 0; }
+  .case-block .label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .case-block p { margin: 0; max-width: 62ch; }
+
+  /* metric strip — the signature element: dashboard-style readout */
+  .metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 24px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+    background: var(--paper-raised);
+  }
+  .metric {
+    flex: 1 1 140px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .metric:last-child { border-right: none; }
+  .metric .num {
+    font-family: var(--font-mono);
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    display: block;
+  }
+  .metric .desc {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--slate);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ===========================================================
+     METHOD / SKILLS
+     =========================================================== */
+  .method-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .method-col .label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .method-col ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .method-col li {
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .method-col li:last-child { border-bottom: none; }
+
+  /* ===========================================================
+     CONTACT / FOOTER
+     =========================================================== */
+  footer {
+    padding: 56px 0 80px;
+    border-top: 1px solid var(--line);
+  }
+  footer h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 28px;
+    margin: 0 0 14px;
+  }
+  footer p { color: var(--slate); max-width: 50ch; margin: 0 0 24px; }
+  .contact-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 15px;
+  }
+  .foot-note {
+    margin-top: 56px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--slate);
+  }
+
+  /* ===========================================================
+     RESPONSIVE
+     =========================================================== */
+  @media (max-width: 640px) {
+    header.hero { padding: 56px 0 40px; }
+    header.hero h1 { font-size: 32px; }
+    header.hero p.bio { font-size: 16px; }
+    section { padding: 48px 0; }
+    .method-grid { grid-template-columns: 1fr; gap: 28px; }
+    .metric { flex: 1 1 100%; border-right: none; border-bottom: 1px solid var(--line); }
+    .metric:last-child { border-bottom: none; }
+    nav.top ul { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+  <nav class="top">
+    <div class="wrap">
+      <a class="name" href="#top">AQIB YOUSUF</a>
+      <ul>
+        <li><a class="navlink" href="#work">Work</a></li>
+        <li><a class="navlink" href="#method">Method</a></li>
+        <li><a class="navlink" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <p class="role">User Researcher for Product Teams</p>
+      <h1>Aqib Yousuf</h1>
+      <p class="bio">
+        I turn ambiguous product questions into decisions teams can act on —
+        combining user interviews and usability testing with SQL, statistical modeling,
+        and experimentation. <span class="muted">3+ years across product analytics, user research,
+        and growth in B2B SaaS. Currently running an impact evaluation for the World Bank Group in Karachi.</span>
+      </p>
+      <div class="hero-links">
+        <a href="mailto:aqibyousuf098@gmail.com">Email</a>
+        <a href="#" title="Add your LinkedIn URL">LinkedIn</a>
+        <a href="#" title="Link to your CV PDF">Résumé (PDF)</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="wrap">
+      <p class="eyebrow">Selected work</p>
+      <h2>Case studies</h2>
+      <p class="lede">Five projects that show the range: predictive modeling, mixed-methods research, controlled experimentation, org-wide service design, and field-based evaluation.</p>
+
+      <!-- CASE STUDY 1 -->
+      <div class="case">
+        <div class="case-head">
+          <h3>Predicting churn before it happens</h3>
+          <span class="case-org">Cloudways (DigitalOcean) · 2023–2025</span>
+        </div>
+
+        <div class="case-block">
+          <span class="label">Problem</span>
+          <p>The growth team could see accounts churning but had no way to flag who was at risk before they left — every retention effort was reactive.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Method</span>
+          <p>Built a logistic regression churn-prediction model in R on SQL-extracted product event and behavioral data. Used cohort analysis to isolate drop-off patterns and identify which segments the model should weight most.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Outcome</span>
+          <p>Proposed and drove a retention initiative directly off the model's output, rather than handing findings to another team to interpret.</p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><span class="num">+10%</span><span class="desc">retention over 3 quarters</span></div>
+          <div class="metric"><span class="num">R + SQL</span><span class="desc">logistic regression model</span></div>
+          <div class="metric"><span class="num">100M+</span><span class="desc">ARR platform</span></div>
+        </div>
+      </div>
+
+      <!-- CASE STUDY 2 -->
+      <div class="case">
+        <div class="case-head">
+          <h3>Researching adoption of an AI Copilot feature</h3>
+          <span class="case-org">Cloudways (DigitalOcean) · 2024</span>
+        </div>
+
+        <div class="case-block">
+          <span class="label">Problem</span>
+          <p>A new AI Copilot feature was ready to ship, but the team didn't know who would actually adopt it, or why some users would upgrade because of it and others wouldn't.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Method</span>
+          <p>Combined user interviews and usability testing with product event data, running qualitative feedback loops alongside quantitative funnel analysis to frame the problem before proposing solutions.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Outcome</span>
+          <p>Findings directly shaped the feature's positioning and rollout ahead of launch.</p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><span class="num">+30%</span><span class="desc">adoption lift</span></div>
+          <div class="metric"><span class="num">+20%</span><span class="desc">upgrade rate</span></div>
+          <div class="metric"><span class="num">Mixed</span><span class="desc">qual + quant methods</span></div>
+        </div>
+      </div>
+
+      <!-- CASE STUDY 3 -->
+      <div class="case">
+        <div class="case-head">
+          <h3>Testing what actually moves upgrade behavior</h3>
+          <span class="case-org">Cloudways (DigitalOcean) · 2023–2025</span>
+        </div>
+
+        <div class="case-block">
+          <span class="label">Problem</span>
+          <p>Product, pricing, and UX changes were being proposed on instinct, with no consistent way to tell which ones would actually move adoption or upgrade behavior.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Method</span>
+          <p>Designed and ran A/B tests alongside large-scale surveys (n=300–2,000), applying statistical significance testing to separate real signal from noise.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Outcome</span>
+          <p>Pushed teams toward one specific next action per test, instead of leaving them with open-ended findings to debate.</p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><span class="num">n=300–2K</span><span class="desc">survey sample range</span></div>
+          <div class="metric"><span class="num">A/B</span><span class="desc">controlled experiments</span></div>
+          <div class="metric"><span class="num">p&lt;0.05</span><span class="desc">significance tested</span></div>
+        </div>
+      </div>
+
+      <!-- CASE STUDY 4 -->
+      <div class="case">
+        <div class="case-head">
+          <h3>Mapping a service blueprint for the entire org</h3>
+          <span class="case-org">Cloudways (DigitalOcean) · 2023–2025</span>
+        </div>
+
+        <div class="case-block">
+          <span class="label">Problem</span>
+          <p>As a founder-led startup, Cloudways had grown into working silos — departments were often unaware of what other teams were doing on the same customer issues, leading to repetitive work and slow resolution at the most basic level.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Method</span>
+          <p>Ran stakeholder interviews across departments and facilitated journey mapping workshops to reconstruct how work actually moved through the org, rather than how each team assumed it moved.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Outcome</span>
+          <p>The blueprint became the single source of truth for onboarding new employees, and gave org leaders a shared reference to spot loopholes and work toward breaking down the silos it had surfaced.</p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><span class="num">Org-wide</span><span class="desc">cross-departmental scope</span></div>
+          <div class="metric"><span class="num">Onboarding</span><span class="desc">single source of truth</span></div>
+          <div class="metric"><span class="num">Leadership</span><span class="desc">used to re-evaluate structure</span></div>
+        </div>
+
+        <p style="font-size: 13.5px; color: var(--slate); margin-top: 18px; font-style: italic;">
+          This blueprint contains internal org detail I keep off the public case study. Hiring managers, email me and I'm happy to walk you through the full version.
+        </p>
+      </div>
+
+      <!-- CASE STUDY 5 -->
+      <div class="case">
+        <div class="case-head">
+          <h3>Measuring program impact, field to report</h3>
+          <span class="case-org">World Bank Group · Dec 2025–Present</span>
+        </div>
+
+        <div class="case-block">
+          <span class="label">Problem</span>
+          <p>A longitudinal impact evaluation in Karachi needed someone to own the full chain from instrument design to final report, with no layer between question and output.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Method</span>
+          <p>Designing the survey instrument, running field data collection, and conducting statistical analysis in R.</p>
+        </div>
+        <div class="case-block">
+          <span class="label">Outcome</span>
+          <p>In progress — structured reporting delivered directly to program leadership.</p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><span class="num">Ongoing</span><span class="desc">longitudinal design</span></div>
+          <div class="metric"><span class="num">Field</span><span class="desc">primary data collection</span></div>
+          <div class="metric"><span class="num">R</span><span class="desc">statistical analysis</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap">
+      <p class="eyebrow">How I work</p>
+      <h2>Method &amp; tools</h2>
+      <p class="lede">Not a dashboard maintainer — I go from a messy question to a structured problem to a shipped recommendation, and I'm equally comfortable in a user interview or a regression model.</p>
+
+      <div class="method-grid">
+        <div class="method-col">
+          <span class="label">Research &amp; stakeholder</span>
+          <ul>
+            <li>User interviews &amp; usability testing</li>
+            <li>Survey design &amp; mixed-methods research</li>
+            <li>Problem framing</li>
+            <li>Stakeholder alignment</li>
+            <li>Insight-to-action delivery</li>
+          </ul>
+        </div>
+        <div class="method-col">
+          <span class="label">Data &amp; analytics</span>
+          <ul>
+            <li>SQL (advanced, daily use), R, Python, Stata</li>
+            <li>Cohort analysis &amp; churn modeling</li>
+            <li>A/B testing &amp; significance testing</li>
+            <li>Funnel &amp; behavioral segmentation</li>
+            <li>Mixpanel, Tableau, PowerBI, Qualtrics, Dovetail</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's talk</h2>
+      <p>Open to user research and product analytics work, especially where qualitative and quantitative methods need to work together.</p>
+      <div class="contact-links">
+        <a href="mailto:aqibyousuf098@gmail.com">aqibyousuf098@gmail.com</a>
+        <a href="#" title="Add your LinkedIn URL">LinkedIn</a>
+        <span style="color: var(--slate);">Karachi, Pakistan</span>
+      </div>
+      <p class="foot-note">© 2026 Aqib Yousuf</p>
+    </div>
+  </footer>
+
+</body>
+</html>
